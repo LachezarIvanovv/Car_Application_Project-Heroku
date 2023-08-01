@@ -1,15 +1,18 @@
-server:
-  port: 8000
+#server:
+#  port: 8000
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mobilele?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: root
-    password: 789456123
+    driverClassName: org.postgresql.Driver
+    url: ${JDBC_DATABASE_URL:}
+    username: ${JDBC_DATABASE_USERNAME:}
+    password: ${JDBC_DATABASE_PASSWORD:}
+
+server:
+  port: ${PORT:8000}
 
   jpa:
 #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: create-drop
     defer-datasource-initialization: true
